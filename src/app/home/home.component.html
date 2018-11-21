@@ -1,0 +1,36 @@
+<h2>Home</h2>
+<form [formGroup]="fg">
+  <div class="row">
+    <div class="col-sm-11">
+      <div class="form-group">
+        <input type="text" class="form-control" formControlName="search" id="search">
+      </div>
+    </div>
+    <div class="col-sm-1">
+      <button type="button" class="btn" (click)="searchClickHandler()">Search</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="form-group">
+        <label for="language">Language</label>
+        <select class="form-control" formControlName="language" id="language">
+          <option *ngFor="let languge of languages" [value]="languge">{{languge}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <label for="owner">Owner:</label>
+      <input type="text" class="form-control" formControlName="owner" id="owner">
+    </div>
+    <div class="col-sm-4">
+      <label for="repository">Respository:</label>
+      <input type="text" class="form-control" formControlName="repository" id="repository">
+    </div>
+  </div>
+</form>
+<div class="searchResults">
+
+  <app-search-result *ngFor="let textMatch of textMatches" [searchParam]="this.fg.controls['search'].value" [textMatches]="textMatch"></app-search-result>
+</div>
